@@ -21,7 +21,7 @@ namespace GravityTS
             // Wallet address
             _account = PlayerPrefs.GetString("Account");
 
-            GTSConnection = new Connection(_apiUrl, _account);
+            GTSConnection = new Connection(_apiUrl, _account, Web3GL.Sign);
             Wardrobe = new Wardrobe(GTSConnection);
         }
 

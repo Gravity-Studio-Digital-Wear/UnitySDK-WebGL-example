@@ -20,11 +20,13 @@ namespace GravityTS.Utils
         private string _signature;
         private string _jwt;
         private string _apiUrl;
+        private Func<string, Task<string>> _signMessage;
 
-        public Connection(string apiUrl, string address)
+        public Connection(string apiUrl, string address, Func<string, Task<string>> signMessage)
         {
             _apiUrl = apiUrl;
             _address = address;
+            _signMessage = signMessage;
             _jwt = null;
             ConnectionEstablished = false;
         }
@@ -81,7 +83,7 @@ namespace GravityTS.Utils
         {
             try
             {
-                _signature = await Web3GL.Sign(message);
+                _signature = await _signMessage(message);
             }
             catch (Exception e)
             {
