@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,8 +9,6 @@ namespace GravityTS.Utils
     public static class Downloader
     {
         public static Texture Texture;
-
-        public static byte[] AvatarBytes;
 
         public static IEnumerator DownloadImage(string mediaUrl)
         {
@@ -26,7 +25,7 @@ namespace GravityTS.Utils
             request.Dispose();
         }
 
-        public static IEnumerator DownloadAvatar(string url)
+        public static IEnumerator DownloadAvatar(string url, Action<byte[]> response)
         {
             using (UnityWebRequest request = new UnityWebRequest(url))
             {
@@ -38,7 +37,7 @@ namespace GravityTS.Utils
                     Debug.Log(request.error);
                 else
                 {
-                    AvatarBytes = request.downloadHandler.data;
+                    response(request.downloadHandler.data);
                 }
             }
         }

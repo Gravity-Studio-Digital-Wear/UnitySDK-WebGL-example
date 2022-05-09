@@ -29,7 +29,7 @@ public class CustomizedInventory : MonoBehaviour
         itemWearable.itemName = _baseWear.itemName;
         itemWearable.itemPerSlot = 1;
         itemWearable.icon = _baseWear.icon;
-        itemWearable.wearable = new Wearable("Base", null, "", _baseAvatar);
+        itemWearable.Avatar = _baseAvatar;
         _inventory.AddItem(itemWearable);
     }
 
@@ -46,7 +46,7 @@ public class CustomizedInventory : MonoBehaviour
 
         await _gtsManager.Wardrobe.FetchWearables();
 
-        foreach (Wearable w in _gtsManager.Wardrobe.Wearables)
+        foreach (WearableBase w in _gtsManager.Wardrobe.Wearables)
         {
             itemWearable = (ItemWearable) ScriptableObject.CreateInstance("ItemWearable");
             itemWearable.type = ItemType.ToolOrWeapon;

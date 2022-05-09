@@ -37,10 +37,11 @@ public class AvatarManager : MonoBehaviour
     {
         if (item is ItemWearable)
         {
+            ItemWearable w = (ItemWearable)item;
             _loadingAvatar.gameObject.SetActive(true);
-            await ((ItemWearable)item).wearable.DownloadAvatar();
+            await w.DownloadAvatar();
             _loadingAvatar.gameObject.SetActive(false);
-            ChangeAvatar(((ItemWearable)item).wearable.Avatar);
+            ChangeAvatar(w.Avatar);
         }
     }
 }

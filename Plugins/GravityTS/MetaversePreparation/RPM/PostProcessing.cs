@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using UnityEngine;
 
-namespace GravityTS.Utils.RPM
+namespace GravityTS.MetaversePreparation.RPM
 {
     public enum OutfitGender
     {
@@ -12,7 +12,7 @@ namespace GravityTS.Utils.RPM
         Feminine
     }
 
-    public static class RPMPostProcessing
+    public static class PostProcessing
     {
 
         // Animation avatars

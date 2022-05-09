@@ -9,13 +9,13 @@ namespace GravityTS.Wearables
 {
     public class Wardrobe
     {
-        public List<Wearable> Wearables { get; private set; }
+        public List<WearableBase> Wearables { get; private set; }
 
         private IFetchWearables _connection;
 
         public Wardrobe(IFetchWearables connection)
         {
-            Wearables = new List<Wearable>();
+            Wearables = new List<WearableBase>();
             _connection = connection;
         }
 
@@ -25,7 +25,7 @@ namespace GravityTS.Wearables
             await FillWardrobeFromJsonString(jsonString);
         }
 
-        public async Task FillWardrobeFromJsonString(string jsonString)
+        async Task FillWardrobeFromJsonString(string jsonString)
         {
             Wearables.Clear();
             var jsonData = JsonUtility.FromJson<WardrobeResult>("{\"result\":" + jsonString + "}");
@@ -35,7 +35,7 @@ namespace GravityTS.Wearables
                 if ((r.product.metadata != null) & (r.product.metadata.Length > 0))
                 {
                     await Downloader.DownloadImage(r.product.metadata[0].previewImage);
-                    Wearables.Add(new Wearable(r.product.name, (Texture2D)Downloader.Texture, r.product.metadata[0].modelUrl));
+                    Wearables.Add(new WearableBase(r.product.name, (Texture2D)Downloader.Texture, r.product.metadata[0].modelUrl));
                 }
             }
         }
