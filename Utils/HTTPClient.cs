@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Networking;
 
-namespace GravityTS.Utils
+namespace GravityLayer.Utils
 {
     public static class HTTPClient
     {

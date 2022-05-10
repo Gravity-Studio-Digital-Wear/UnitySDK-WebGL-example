@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using GravityTS.Utils;
+using GravityLayer.Utils;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace GravityTS.Wearables
+namespace GravityLayer.Wearables
 {
     public class Wardrobe
     {
