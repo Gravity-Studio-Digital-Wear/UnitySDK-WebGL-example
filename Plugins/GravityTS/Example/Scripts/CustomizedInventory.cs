@@ -8,7 +8,7 @@ using GravityTS.Wearables;
 [RequireComponent(typeof(ItemContainer))]
 public class CustomizedInventory : MonoBehaviour
 {
-    [SerializeField] private Item _baseWear; //TODO remove this variable
+    [SerializeField] private Item _baseWear;
     [SerializeField] private GTSManager _gtsManager;
     [SerializeField] private GameObject _baseAvatar;
     private ItemContainer _inventory;
