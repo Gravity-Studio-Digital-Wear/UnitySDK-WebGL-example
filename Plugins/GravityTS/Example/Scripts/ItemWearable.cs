@@ -1,10 +1,10 @@
 ﻿using System;
 using XEntity;
-using GravityTS.Wearables;
+using GravityLayer.Wearables;
 using UnityEngine;
 using System.Threading.Tasks;
 using Siccity.GLTFUtility;
-using GravityTS.MetaversePreparation.RPM;
+using GravityLayer.MetaversePreparation.RPM;
 
 [CreateAssetMenu(fileName = "New Item", menuName = "XEntity/ItemWearable")]
 public class ItemWearable : Item

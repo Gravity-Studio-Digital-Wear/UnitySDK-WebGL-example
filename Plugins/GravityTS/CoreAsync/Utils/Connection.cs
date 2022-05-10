@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using System.Threading.Tasks;
 
-namespace GravityTS.Utils
+namespace GravityLayer.Utils
 {
     public interface IFetchWearables
     {

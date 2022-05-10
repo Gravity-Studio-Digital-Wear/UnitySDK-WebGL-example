@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using XEntity;
-using GravityTS;
-using GravityTS.Wearables;
+using GravityLayer;
+using GravityLayer.Wearables;
 
 [RequireComponent(typeof(ItemContainer))]
 public class CustomizedInventory : MonoBehaviour
 {
     [SerializeField] private Item _baseWear;
-    [SerializeField] private GTSManager _gtsManager;
+    [SerializeField] private GLayerManager _gtsManager;
     [SerializeField] private GameObject _baseAvatar;
     private ItemContainer _inventory;
     private bool _gtsWearablesFetched;
@@ -37,7 +37,7 @@ public class CustomizedInventory : MonoBehaviour
     {
         if (_gtsWearablesFetched) return;
 
-        if (!_gtsManager.GTSConnection.ConnectionEstablished)
+        if (!_gtsManager.GrLConnection.ConnectionEstablished)
         {
             await _gtsManager.EstablishConnection();
         }

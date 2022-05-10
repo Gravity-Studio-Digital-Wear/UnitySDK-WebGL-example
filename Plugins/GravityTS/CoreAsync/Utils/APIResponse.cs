@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GravityTS.Utils
+namespace GravityLayer.Utils
 {
     public struct LoginResponse
     {

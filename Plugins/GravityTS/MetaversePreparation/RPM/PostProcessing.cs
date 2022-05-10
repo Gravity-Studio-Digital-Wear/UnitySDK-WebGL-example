@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using UnityEngine;
 
-namespace GravityTS.MetaversePreparation.RPM
+namespace GravityLayer.MetaversePreparation.RPM
 {
     public enum OutfitGender
     {

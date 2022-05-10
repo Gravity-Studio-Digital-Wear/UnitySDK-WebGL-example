@@ -1,15 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using GravityTS;
-using GravityTS.Wearables;
-using GravityTS.Utils;
+using GravityLayer;
+using GravityLayer.Wearables;
+using GravityLayer.Utils;
 using System.Threading.Tasks;
 
-public class GTSManager : MonoBehaviour
+public class GLayerManager : MonoBehaviour
 {
-    public GTSEntryPoint GTSEntryPoint;
-    public Connection GTSConnection;
+    public GravityLayerEntryPoint GrLEntryPoint;
+    public Connection GrLConnection;
     public Wardrobe Wardrobe;
 
     [SerializeField] protected string _apiUrl = "https://gravity-dev.easychain.dev/api";
@@ -21,14 +21,14 @@ public class GTSManager : MonoBehaviour
         // Wallet address
         _account = PlayerPrefs.GetString("Account");
 
-        GTSEntryPoint = new GTSEntryPoint(_apiUrl, _account, Web3GL.Sign);
+        GrLEntryPoint = new GravityLayerEntryPoint(_apiUrl, _account, Web3GL.Sign);
 
-        GTSConnection = GTSEntryPoint.GTSConnection;
-        Wardrobe = GTSEntryPoint.Wardrobe;
+        GrLConnection = GrLEntryPoint.GrLConnection;
+        Wardrobe = GrLEntryPoint.Wardrobe;
     }
 
     public virtual async Task EstablishConnection()
     {
-        await GTSConnection.EstablishConnection();
+        await GrLConnection.EstablishConnection();
     }
 }

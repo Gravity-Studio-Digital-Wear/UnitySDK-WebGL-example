@@ -1,9 +1,9 @@
 using System;
 using UnityEngine;
-using GravityTS.Utils;
+using GravityLayer.Utils;
 using System.Threading.Tasks;
 
-namespace GravityTS.Wearables
+namespace GravityLayer.Wearables
 {
     public class WearableBase
     {
