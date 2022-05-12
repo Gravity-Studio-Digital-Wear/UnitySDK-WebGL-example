@@ -8,7 +8,7 @@ namespace GravityLayer.Utils
 {
     public interface IFetchWearables
     {
-        public Task<string> FetchWearables();
+        public Task<string> FetchWearablesByMetaverseId(string metaverseId);
     }
 
     public class Connection : IFetchWearables
@@ -116,9 +116,9 @@ namespace GravityLayer.Utils
             req.Dispose();
         }
 
-        public async Task<string> FetchWearables()
+        public async Task<string> FetchWearablesByMetaverseId(string metaverseId)
         {
-            string url = _apiUrl + "/warehouse/products/my";
+            string url = _apiUrl + "/warehouse/products/my?metaverse=" + metaverseId;
 
             var result = await HTTPClient.Get(url, _jwt);
 

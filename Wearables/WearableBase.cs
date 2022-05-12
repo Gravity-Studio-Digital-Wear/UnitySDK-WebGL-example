@@ -12,14 +12,16 @@ namespace GravityLayer.Wearables
         public string Title { get; private set; }
         public Texture2D PreviewImage { get; private set; }
         public string ModelUrl { get; private set; }
+        public string MetaverseId { get; private set; }
 
         public byte[] AvatarBytes;
 
-        public WearableBase(string title, Texture2D preview, string modelUrl)
+        public WearableBase(string title, Texture2D preview, string modelUrl, string metaverseId)
         {
             Title = title;
             PreviewImage = preview;
             ModelUrl = modelUrl;
+            MetaverseId = metaverseId;
         }
 
         public async Task DownloadAvatar()

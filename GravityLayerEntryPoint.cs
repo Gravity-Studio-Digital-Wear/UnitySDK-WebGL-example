@@ -14,13 +14,13 @@ namespace GravityLayer
 
         private string _account;
 
-        public GravityLayerEntryPoint(string apiUrl, string account, Func<string, Task<string>> signMessage)
+        public GravityLayerEntryPoint(string apiUrl, string account, string metaverseId, Func<string, Task<string>> signMessage)
         {
             _apiUrl = apiUrl;
             _account = account;
  
             GrLConnection = new Connection(_apiUrl, _account, signMessage);
-            Wardrobe = new Wardrobe(GrLConnection);
+            Wardrobe = new Wardrobe(GrLConnection, metaverseId);
         }
     }
 }
