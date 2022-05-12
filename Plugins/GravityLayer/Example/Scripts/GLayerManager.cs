@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 public class GLayerManager : MonoBehaviour
 {
-    public GravityLayerEntryPoint GrLEntryPoint;
-    public Connection GrLConnection;
+    public GravityLayerEntryPoint GLayerEntryPoint;
+    public Connection GLayerConnection;
     public Wardrobe Wardrobe;
 
     [SerializeField] protected string _apiUrl = "https://gravity-dev.easychain.dev/api";
@@ -22,14 +22,14 @@ public class GLayerManager : MonoBehaviour
         // Wallet address
         _account = PlayerPrefs.GetString("Account");
 
-        GrLEntryPoint = new GravityLayerEntryPoint(_apiUrl, _account, _metaverseId, Web3GL.Sign);
+        GLayerEntryPoint = new GravityLayerEntryPoint(_apiUrl, _account, _metaverseId, Web3GL.Sign);
 
-        GrLConnection = GrLEntryPoint.GrLConnection;
-        Wardrobe = GrLEntryPoint.Wardrobe;
+        GLayerConnection = GLayerEntryPoint.GLayerConnection;
+        Wardrobe = GLayerEntryPoint.Wardrobe;
     }
 
     public virtual async Task EstablishConnection()
     {
-        await GrLConnection.EstablishConnection();
+        await GLayerConnection.EstablishConnection();
     }
 }

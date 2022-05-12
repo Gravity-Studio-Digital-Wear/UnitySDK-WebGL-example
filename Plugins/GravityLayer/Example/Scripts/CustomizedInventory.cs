@@ -37,7 +37,7 @@ public class CustomizedInventory : MonoBehaviour
     {
         if (_gtsWearablesFetched) return;
 
-        if (!_gtsManager.GrLConnection.ConnectionEstablished)
+        if (!_gtsManager.GLayerConnection.ConnectionEstablished)
         {
             await _gtsManager.EstablishConnection();
         }
