@@ -7,7 +7,7 @@ namespace GravityLayer
 {
     public class GravityLayerEntryPoint
     {
-        public Connection GrLConnection { get; private set; }
+        public Connection GLayerConnection { get; private set; }
         public Wardrobe Wardrobe { get; private set; }
 
         private string _apiUrl;
@@ -19,8 +19,8 @@ namespace GravityLayer
             _apiUrl = apiUrl;
             _account = account;
  
-            GrLConnection = new Connection(_apiUrl, _account, signMessage);
-            Wardrobe = new Wardrobe(GrLConnection, metaverseId);
+            GLayerConnection = new Connection(_apiUrl, _account, signMessage);
+            Wardrobe = new Wardrobe(GLayerConnection, metaverseId);
         }
     }
 }
