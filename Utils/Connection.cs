@@ -39,11 +39,11 @@ namespace GravityLayer.Utils
             if (_jwt != null)
             {
                 ConnectionEstablished = true;
-                Debug.Log("Connection to GTS API established");
+                Debug.Log("Connection to Gravity API established");
             }
             else
             {
-                Debug.Log("Connection to GTS API has not been established");
+                Debug.Log("Connection to Gravity API has not been established");
             }
             return _jwt;
         }
