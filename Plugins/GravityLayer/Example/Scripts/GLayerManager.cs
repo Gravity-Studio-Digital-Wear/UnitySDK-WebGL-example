@@ -13,6 +13,7 @@ public class GLayerManager : MonoBehaviour
     public Wardrobe Wardrobe;
 
     [SerializeField] protected string _apiUrl = "https://gravity-dev.easychain.dev/api";
+    [SerializeField] protected string _metaverseId = "ReadyPlayerMe";
 
     private string _account;
 
@@ -21,7 +22,7 @@ public class GLayerManager : MonoBehaviour
         // Wallet address
         _account = PlayerPrefs.GetString("Account");
 
-        GrLEntryPoint = new GravityLayerEntryPoint(_apiUrl, _account, Web3GL.Sign);
+        GrLEntryPoint = new GravityLayerEntryPoint(_apiUrl, _account, _metaverseId, Web3GL.Sign);
 
         GrLConnection = GrLEntryPoint.GrLConnection;
         Wardrobe = GrLEntryPoint.Wardrobe;
