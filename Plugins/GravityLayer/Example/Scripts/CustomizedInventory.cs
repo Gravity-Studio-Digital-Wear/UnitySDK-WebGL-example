@@ -17,7 +17,7 @@ public class CustomizedInventory : MonoBehaviour
     void Awake()
     {
         _inventory = GetComponent<ItemContainer>();
-        _inventory.OnInventoryOpen += FetchGTSWearables;
+        _inventory.OnInventoryOpen += FetchGLayerWearables;
         _gtsWearablesFetched = false;
     }
 
@@ -33,7 +33,7 @@ public class CustomizedInventory : MonoBehaviour
         _inventory.AddItem(itemWearable);
     }
 
-    async void FetchGTSWearables()
+    async void FetchGLayerWearables()
     {
         if (_gtsWearablesFetched) return;
 
