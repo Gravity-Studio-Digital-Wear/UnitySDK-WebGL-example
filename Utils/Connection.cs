@@ -52,31 +52,12 @@ namespace GravityLayer.Utils
         {
             string url = _apiUrl + "/auth/challenge";
             string json = "{\"address\": \"" + _address + "\"}";
-            byte[] jsonToSend = new System.Text.UTF8Encoding().GetBytes(json);
-            try
-            {
-                var request = UnityWebRequest.Post(url, "POST");
-                request.SetRequestHeader("Content-Type", "application/json");
-                request.uploadHandler = (UploadHandler)new UploadHandlerRaw(jsonToSend);
-                await OnChallengeResponse(request);
-            }
-            catch (Exception e) { Debug.Log("ERROR : " + e.Message); }
-        }
 
-        IEnumerator OnChallengeResponse(UnityWebRequest req)
-        {
-            yield return req.SendWebRequest();
-            if (req.result != UnityWebRequest.Result.Success)
-            {
-                Debug.Log("Network error has occured: " + req.GetResponseHeader(""));
-            }
-            else
-            {
-                LoginResponse data = JsonUtility.FromJson<LoginResponse>(req.downloadHandler.text);
-                _uuid = data.challenge;
-            }
+            string response = await HTTPClient.Post(url, json);
 
-            req.Dispose();
+            LoginResponse data = JsonUtility.FromJson<LoginResponse>(response);
+
+            _uuid = data.challenge;
         }
 
         public async Task Sign(string message)
@@ -95,25 +76,12 @@ namespace GravityLayer.Utils
         {
             string url = _apiUrl + "/auth/login";
             string json = "{\"address\": \"" + _address + "\", \"signature\": \"" + _signature + "\"}";
-            byte[] jsonToSend = new System.Text.UTF8Encoding().GetBytes(json);
-            try
-            {
-                var request = UnityWebRequest.Post(url, "POST");
-                request.SetRequestHeader("Content-Type", "application/json");
-                request.uploadHandler = (UploadHandler)new UploadHandlerRaw(jsonToSend);
-                await OnLoginResponse(request);
-            }
-            catch (Exception e) { Debug.Log("ERROR : " + e.Message); }
-        }
 
-        IEnumerator OnLoginResponse(UnityWebRequest req)
-        {
-            yield return req.SendWebRequest();
-            if (req.result != UnityWebRequest.Result.Success)
-                Debug.Log("Network error has occured: " + req.GetResponseHeader(""));
-            LoginResponse data = JsonUtility.FromJson<LoginResponse>(req.downloadHandler.text);
+            string response = await HTTPClient.Post(url, json);
+
+            LoginResponse data = JsonUtility.FromJson<LoginResponse>(response);
+
             _jwt = data.token;
-            req.Dispose();
         }
 
         public async Task<string> FetchWearablesByMetaverseId(string metaverseId)

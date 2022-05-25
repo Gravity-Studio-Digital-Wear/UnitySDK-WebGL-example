@@ -61,5 +61,35 @@ namespace GravityLayer.Utils
                 return default;
             }
         }
+
+        public static async Task<string> Post(string url, string jsonData)
+        {
+            byte[] jsonToSend = new System.Text.UTF8Encoding().GetBytes(jsonData);
+
+            try
+            {
+                using var request = UnityWebRequest.Post(url, "POST");
+
+                request.SetRequestHeader("Content-Type", "application/json");
+                request.uploadHandler = (UploadHandler)new UploadHandlerRaw(jsonToSend);
+
+                var operation = request.SendWebRequest();
+
+                while (!operation.isDone)
+                    await Task.Yield();
+
+                if (request.result != UnityWebRequest.Result.Success)
+                    Debug.LogError($"Failed: {request.error}");
+
+                var result = request.downloadHandler.text;
+
+                return result;
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"{nameof(Post)} failed: {e.Message}");
+                return default;
+            }
+        }
     }
 }
