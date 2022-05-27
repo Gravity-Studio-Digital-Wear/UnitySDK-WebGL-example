@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RotateAround : MonoBehaviour
+public class ZoomAndRotateAround : MonoBehaviour
 {
     [SerializeField]
     private float _mouseSensitivity = 3.0f;
@@ -17,6 +17,13 @@ public class RotateAround : MonoBehaviour
 
     [SerializeField]
     private float _distanceFromTarget = 3.0f;
+
+    [SerializeField]
+    private float _zoomSpeed = 5.0f;
+    [SerializeField]
+    private float _zoomMin = 1.0f;
+    [SerializeField]
+    private float _zoomMax = 5.0f;
 
     private Vector3 _currentRotation;
     private Vector3 _smoothVelocity = Vector3.zero;
@@ -39,8 +46,21 @@ public class RotateAround : MonoBehaviour
     {
         if (_target == null) return;
 
-        if (!Input.GetMouseButton(0)) return;
+        if (Input.GetMouseButton(0))
+        {
+            RotateAround();
+        }
 
+        if (Input.GetAxis("Mouse ScrollWheel") != 0)
+        {
+            float zoomAmount = Input.GetAxis("Mouse ScrollWheel") * _zoomSpeed;
+
+            Zoom(zoomAmount);
+        }
+    }
+
+    void RotateAround()
+    {
         float mouseX = Input.GetAxis("Mouse X") * _mouseSensitivity;
         float mouseY = Input.GetAxis("Mouse Y") * _mouseSensitivity;
 
@@ -58,5 +78,22 @@ public class RotateAround : MonoBehaviour
 
         // Substract forward vector of the GameObject to point its forward vector to the target
         transform.position = _target.position - transform.forward * _distanceFromTarget;
+    }
+
+    void Zoom(float zoomAmount)
+    {
+        float dist = Vector3.Distance(transform.position, _target.position);
+
+        if ((zoomAmount > 0) & (dist > _zoomMin))
+        {
+            transform.position += transform.forward * zoomAmount;
+        }
+
+        if ((zoomAmount < 0) & (dist < _zoomMax))
+        {
+            transform.position += transform.forward * zoomAmount;
+        }
+
+        _distanceFromTarget = Vector3.Distance(transform.position, _target.position);
     }
 }
