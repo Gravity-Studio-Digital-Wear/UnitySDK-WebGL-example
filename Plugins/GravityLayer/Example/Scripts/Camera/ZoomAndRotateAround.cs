@@ -16,7 +16,7 @@ public class ZoomAndRotateAround : MonoBehaviour
     private Transform _target;
 
     [SerializeField]
-    private float _distanceFromTarget = 3.0f;
+    private float _initialDistanceFromTarget = 3.0f;
 
     [SerializeField]
     private float _zoomSpeed = 5.0f;
@@ -39,7 +39,7 @@ public class ZoomAndRotateAround : MonoBehaviour
         Vector3 _currentRotation = transform.localEulerAngles;
         _currentRotation.x = _rotationX;
         transform.localEulerAngles = _currentRotation;
-        transform.position = _target.position - transform.forward * _distanceFromTarget;
+        transform.position = _target.position - transform.forward * _initialDistanceFromTarget;
     }
 
     void Update()
@@ -61,6 +61,8 @@ public class ZoomAndRotateAround : MonoBehaviour
 
     void RotateAround()
     {
+        float dist = Vector3.Distance(transform.position, _target.position);
+
         float mouseX = Input.GetAxis("Mouse X") * _mouseSensitivity;
         float mouseY = Input.GetAxis("Mouse Y") * _mouseSensitivity;
 
@@ -76,8 +78,8 @@ public class ZoomAndRotateAround : MonoBehaviour
         _currentRotation = Vector3.SmoothDamp(_currentRotation, nextRotation, ref _smoothVelocity, _smoothTime);
         transform.localEulerAngles = _currentRotation;
 
-        // Substract forward vector of the GameObject to point its forward vector to the target
-        transform.position = _target.position - transform.forward * _distanceFromTarget;
+        // Substract forward vector of the GameObject to point its forward vector to the target    
+        transform.position = _target.position - transform.forward * dist;
     }
 
     void Zoom(float zoomAmount)
@@ -93,7 +95,5 @@ public class ZoomAndRotateAround : MonoBehaviour
         {
             transform.position += transform.forward * zoomAmount;
         }
-
-        _distanceFromTarget = Vector3.Distance(transform.position, _target.position);
     }
 }
