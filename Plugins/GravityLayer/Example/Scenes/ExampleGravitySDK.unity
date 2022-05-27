@@ -601,7 +601,7 @@ MonoBehaviour:
   _rotationY: 0
   _rotationX: 5
   _target: {fileID: 920408903}
-  _distanceFromTarget: 3
+  _initialDistanceFromTarget: 3
   _zoomSpeed: 2
   _zoomMin: 1.4
   _zoomMax: 3
@@ -702,7 +702,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1069490356
 MonoBehaviour:
   m_ObjectHideFlags: 0
