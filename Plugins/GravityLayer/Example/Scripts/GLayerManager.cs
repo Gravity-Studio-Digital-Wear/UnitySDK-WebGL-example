@@ -12,7 +12,7 @@ public class GLayerManager : MonoBehaviour
     public Connection GLayerConnection;
     public Wardrobe Wardrobe;
 
-    [SerializeField] protected string _apiUrl = "https://gravity-dev.easychain.dev/api";
+    [SerializeField] protected string _apiUrl = "http://localhost:3000/api";
     [SerializeField] protected string _metaverseId = "ReadyPlayerMe";
 
     private string _account;

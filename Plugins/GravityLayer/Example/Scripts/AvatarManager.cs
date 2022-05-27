@@ -9,14 +9,15 @@ public class AvatarManager : MonoBehaviour
 {
     public GameObject Avatar { get; private set; }
 
+    [SerializeField] private GameObject _avatarHolder;
     [SerializeField] private GameObject _baseAvatar;
-    [SerializeField] private Text _loadingAvatar;
+    [SerializeField] private Text _loadingAvatarText;
 
     void Start()
     {
         Avatar = _baseAvatar;
         ItemManager.OnItemEquip += HandleItemEquip;
-        _loadingAvatar.gameObject.SetActive(false);
+        _loadingAvatarText.gameObject.SetActive(false);
     }
 
     public void SetDefaultAvatar()
@@ -29,6 +30,7 @@ public class AvatarManager : MonoBehaviour
         Avatar.SetActive(false);
         newAvatar.transform.position = Avatar.transform.position;
         newAvatar.transform.rotation = Avatar.transform.rotation;
+        newAvatar.transform.SetParent(_avatarHolder.transform);
         newAvatar.SetActive(true);
         Avatar = newAvatar;
     }
@@ -38,9 +40,9 @@ public class AvatarManager : MonoBehaviour
         if (item is ItemWearable)
         {
             ItemWearable w = (ItemWearable)item;
-            _loadingAvatar.gameObject.SetActive(true);
+            _loadingAvatarText.gameObject.SetActive(true);
             await w.DownloadAvatar();
-            _loadingAvatar.gameObject.SetActive(false);
+            _loadingAvatarText.gameObject.SetActive(false);
             ChangeAvatar(w.Avatar);
         }
     }
