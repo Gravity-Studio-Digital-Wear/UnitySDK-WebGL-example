@@ -38,6 +38,7 @@ public class ZoomAndRotateAround : MonoBehaviour
     {
         Vector3 _currentRotation = transform.localEulerAngles;
         _currentRotation.x = _rotationX;
+        _currentRotation.y = _rotationY;
         transform.localEulerAngles = _currentRotation;
         transform.position = _target.position - transform.forward * _initialDistanceFromTarget;
     }
