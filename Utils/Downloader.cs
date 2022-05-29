@@ -30,7 +30,7 @@ namespace GravityLayer.Utils
             }
         }
 
-        public static async Task DownloadAvatar(string url, Action<byte[]> response)
+        public static async Task<byte[]> DownloadAvatar(string url)
         {
             try
             {
@@ -46,11 +46,12 @@ namespace GravityLayer.Utils
                 if (request.result != UnityWebRequest.Result.Success)
                     Debug.LogError($"Failed: {request.error}");
 
-                response(request.downloadHandler.data);
+                return request.downloadHandler.data;
             }
             catch (Exception e)
             {
                 Debug.LogError($"{nameof(DownloadAvatar)} failed: {e.Message}");
+                return default;
             }
         }
     }
