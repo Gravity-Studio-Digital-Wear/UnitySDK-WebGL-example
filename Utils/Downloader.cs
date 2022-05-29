@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
 using System.Threading.Tasks;
@@ -8,21 +7,27 @@ namespace GravityLayer.Utils
 {
     public static class Downloader
     {
-        public static Texture Texture;
-
-        public static IEnumerator DownloadImage(string mediaUrl)
+        public static async Task<Texture> DownloadImage(string mediaUrl)
         {
-            UnityWebRequest request = UnityWebRequestTexture.GetTexture(mediaUrl);
-
-            yield return request.SendWebRequest();
-            if ((request.result == UnityWebRequest.Result.ConnectionError) || (request.result == UnityWebRequest.Result.ProtocolError))
-                Debug.Log(request.error);
-            else
+            try
             {
-                Texture = DownloadHandlerTexture.GetContent(request);
-            }
+                using var request = UnityWebRequestTexture.GetTexture(mediaUrl);
 
-            request.Dispose();
+                var operation = request.SendWebRequest();
+
+                while (!operation.isDone)
+                    await Task.Yield();
+
+                if (request.result != UnityWebRequest.Result.Success)
+                    Debug.LogError($"Failed: {request.error}");
+
+                return DownloadHandlerTexture.GetContent(request);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"{nameof(DownloadImage)} failed: {e.Message}");
+                return default;
+            }
         }
 
         public static async Task DownloadAvatar(string url, Action<byte[]> response)

@@ -29,6 +29,7 @@ namespace GravityLayer.Wearables
 
         async Task FillWardrobeFromJsonString(string jsonString)
         {
+            Texture texture;
             Wearables.Clear();
             var jsonData = JsonUtility.FromJson<WardrobeResult>("{\"result\":" + jsonString + "}");
             foreach (var r in jsonData.result)
@@ -36,8 +37,8 @@ namespace GravityLayer.Wearables
                 // TODO check metaverse id
                 if ((r.product.metadata != null) & (r.product.metadata.Length > 0))
                 {
-                    await Downloader.DownloadImage(r.product.metadata[0].previewImage);
-                    Wearables.Add(new WearableBase(r.product.name, (Texture2D)Downloader.Texture, r.product.metadata[0].modelUrl, _metaverseId));
+                    texture = await Downloader.DownloadImage(r.product.metadata[0].previewImage);
+                    Wearables.Add(new WearableBase(r.product.name, (Texture2D)texture, r.product.metadata[0].modelUrl, _metaverseId));
                 }
             }
         }
