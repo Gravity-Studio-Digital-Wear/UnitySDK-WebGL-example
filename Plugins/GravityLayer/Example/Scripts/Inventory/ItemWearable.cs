@@ -1,10 +1,10 @@
-﻿using System;
-using XEntity;
+﻿using XEntity;
 using GravityLayer.Wearables;
 using UnityEngine;
 using System.Threading.Tasks;
 using Siccity.GLTFUtility;
 using GravityLayer.MetaversePreparation.RPM;
+using GravityLayer.Utils;
 
 [CreateAssetMenu(fileName = "New Item", menuName = "XEntity/ItemWearable")]
 public class ItemWearable : Item
@@ -18,10 +18,14 @@ public class ItemWearable : Item
         // if Avatar GameObject exists no need to download it again
         if (Avatar != null) return;
 
-        await wearable.DownloadAvatar();
-        Debug.Log("Array size " + wearable.AvatarBytes.Length.ToString());
+        await Downloader.DownloadAvatar(wearable.ModelUrl, HandleDownloadAvatarResponse);
+    }
 
-        Avatar = Importer.LoadFromBytes(wearable.AvatarBytes);
+    void HandleDownloadAvatarResponse(byte[] avatarBytes)
+    {
+        Avatar = Importer.LoadFromBytes(avatarBytes);
+        Debug.Log("Array size " + avatarBytes.Length.ToString());
+
         PostProcessing.PrepareAvatar(Avatar);
     }
 }
