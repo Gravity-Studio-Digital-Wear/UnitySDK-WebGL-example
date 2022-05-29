@@ -1,8 +1,8 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using System.Threading.Tasks;
 
 namespace GravityLayer.Utils
 {
@@ -25,20 +25,27 @@ namespace GravityLayer.Utils
             request.Dispose();
         }
 
-        public static IEnumerator DownloadAvatar(string url, Action<byte[]> response)
+        public static async Task DownloadAvatar(string url, Action<byte[]> response)
         {
-            using (UnityWebRequest request = new UnityWebRequest(url))
+            try
             {
+                using var request = new UnityWebRequest(url);
+
                 request.downloadHandler = new DownloadHandlerBuffer();
 
-                yield return request.SendWebRequest();
+                var operation = request.SendWebRequest();
 
-                if ((request.result == UnityWebRequest.Result.ConnectionError) || (request.result == UnityWebRequest.Result.ProtocolError))
-                    Debug.Log(request.error);
-                else
-                {
-                    response(request.downloadHandler.data);
-                }
+                while (!operation.isDone)
+                    await Task.Yield();
+
+                if (request.result != UnityWebRequest.Result.Success)
+                    Debug.LogError($"Failed: {request.error}");
+
+                response(request.downloadHandler.data);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"{nameof(DownloadAvatar)} failed: {e.Message}");
             }
         }
     }
