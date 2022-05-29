@@ -18,11 +18,10 @@ public class ItemWearable : Item
         // if Avatar GameObject exists no need to download it again
         if (Avatar != null) return;
 
-        await Downloader.DownloadAvatar(wearable.ModelUrl, HandleDownloadAvatarResponse);
-    }
+        byte[] avatarBytes;
 
-    void HandleDownloadAvatarResponse(byte[] avatarBytes)
-    {
+        avatarBytes = await Downloader.DownloadAvatar(wearable.ModelUrl);
+
         Avatar = Importer.LoadFromBytes(avatarBytes);
         Debug.Log("Array size " + avatarBytes.Length.ToString());
 
