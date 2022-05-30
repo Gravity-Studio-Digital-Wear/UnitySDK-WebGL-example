@@ -47,7 +47,7 @@ public class Web3GL
         string response = SendContractResponse();
         while (response == "")
         {
-            await new WaitForSeconds(1f);
+            await Task.Delay(1000);
             response = SendContractResponse();
         }
         SetContractResponse("");
@@ -70,7 +70,7 @@ public class Web3GL
         string response = SendTransactionResponse();
         while (response == "")
         {
-            await new WaitForSeconds(1f);
+            await Task.Delay(1000);
             response = SendTransactionResponse();
         }
         SetTransactionResponse("");
@@ -91,7 +91,7 @@ public class Web3GL
         string response = SignMessageResponse();
         while (response == "")
         {
-            await new WaitForSeconds(1f);
+            await Task.Delay(1000);
             response = SignMessageResponse();
         }
         // Set response to empty
