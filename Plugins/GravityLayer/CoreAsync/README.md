@@ -13,7 +13,7 @@ Alternatively you can download a Unity package file from [Releases](https://gith
 
 A single entry point for Gravity SDK is the class `GravityLayerEntryPoint`.
 
-You can connect to Gravity API by calling `GravityLayerEntryPoint.GrLConnection.EstablishConnection()`
+You can connect to Gravity API by calling `GravityLayerEntryPoint.GLayerConnection.EstablishConnection()`
 
 You can fetch user’s wearables by calling `GravityLayerEntryPoint.Wardrobe.FetchWearables()`
 
