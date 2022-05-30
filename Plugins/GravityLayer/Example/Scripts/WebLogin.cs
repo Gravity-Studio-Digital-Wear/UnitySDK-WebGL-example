@@ -2,7 +2,6 @@
 using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Threading.Tasks;
 
 #if UNITY_WEBGL
 public class WebLogin : MonoBehaviour
@@ -25,11 +24,11 @@ public class WebLogin : MonoBehaviour
         OnConnected();
     }
 
-    private async void OnConnected()
+    async private void OnConnected()
     {
         account = ConnectAccount();
         while (account == "") {
-            await Task.Yield();
+            await new WaitForSeconds(1f);
             account = ConnectAccount();
         };
         // save account for next scene
