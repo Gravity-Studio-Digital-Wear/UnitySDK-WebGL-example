@@ -11,12 +11,11 @@ namespace GravityLayer.Wearables
         public string ModelUrl { get; private set; }
         public string MetaverseId { get; private set; }
 
-        public WearableBase(string title, Texture2D preview, string modelUrl, string metaverseId)
+        public WearableBase(string title, Texture2D preview, string modelUrl)
         {
             Title = title;
             PreviewImage = preview;
             ModelUrl = modelUrl;
-            MetaverseId = metaverseId;
         }
     }
 }
