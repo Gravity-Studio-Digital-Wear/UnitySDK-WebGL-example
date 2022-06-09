@@ -34,7 +34,6 @@ namespace GravityLayer.Wearables
             var jsonData = JsonUtility.FromJson<WardrobeResult>("{\"result\":" + jsonString + "}");
             foreach (var r in jsonData.result)
             {
-                // TODO check metaverse id
                 if ((r.product.metadata != null) & (r.product.metadata.Length > 0))
                 {
                     texture = await Downloader.DownloadImage(r.product.metadata[0].previewImage);
