@@ -6,7 +6,5 @@ namespace GravityLayer.Wearables
     public interface IWardrobe
     {
         public List<IWearable> Wearables { get; }
-
-        public Task FetchWearables();
     }
 }
