@@ -21,7 +21,7 @@ namespace GravityLayer.Wearables
             _metaverseId = metaverseId;
         }
 
-        public async Task FetchWearables()
+        public async Task FetchInteroperableWearables()
         {
             string jsonString = await _connection.FetchWearablesByMetaverseId(_metaverseId);
             await FillWardrobeFromJsonString(jsonString);
