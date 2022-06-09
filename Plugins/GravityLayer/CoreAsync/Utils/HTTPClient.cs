@@ -7,41 +7,23 @@ namespace GravityLayer.Utils
 {
     public static class HTTPClient
     {
-        public static async Task<string> Get(string url, string jwt)
+        public static async Task<string> Get(string url, string jwt = "", string secret = "")
         {
             try
             {
                 using var request = UnityWebRequest.Get(url);
 
                 request.SetRequestHeader("Content-Type", "application/json");
-                request.SetRequestHeader("Authorization", "Bearer " + jwt);
 
-                var operation = request.SendWebRequest();
+                if (jwt.Length > 0)
+                {
+                    request.SetRequestHeader("Authorization", "Bearer " + jwt);
+                }
 
-                while (!operation.isDone)
-                    await Task.Yield();
-
-                if (request.result != UnityWebRequest.Result.Success)
-                    Debug.LogError($"Failed: {request.error}");
-
-                var result = request.downloadHandler.text;
-
-                return result;
-            }
-            catch (Exception e)
-            {
-                Debug.LogError($"{nameof(Get)} failed: {e.Message}");
-                return default;
-            }
-        }
-
-        public static async Task<string> Get(string url)
-        {
-            try
-            {
-                using var request = UnityWebRequest.Get(url);
-
-                request.SetRequestHeader("Content-Type", "application/json");
+                if (secret.Length > 0)
+                {
+                    request.SetRequestHeader("api-secret", secret);
+                }
 
                 var operation = request.SendWebRequest();
 
