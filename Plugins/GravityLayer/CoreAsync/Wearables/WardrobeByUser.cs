@@ -17,7 +17,7 @@ namespace GravityLayer.Wearables
             _APIWrapper = APIWrapper;
         }
 
-        public async Task FetchWearables(string address)
+        public async Task FetchInteroperableWearables(string address)
         {
             string jsonString = await _APIWrapper.GetNFTsByAddress(address);
             await FillWardrobeFromJsonString(jsonString);
