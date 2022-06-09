@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GravityLayer.Wearables
 {
-    public class Wardrobe
+    public class Wardrobe : IWardrobe
     {
         public List<IWearable> Wearables { get; private set; }
 
