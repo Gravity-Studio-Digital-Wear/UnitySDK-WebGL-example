@@ -9,14 +9,14 @@ namespace GravityLayer.Wearables
 {
     public class Wardrobe
     {
-        public List<WearableBase> Wearables { get; private set; }
+        public List<IWearable> Wearables { get; private set; }
 
         private IFetchWearables _connection;
         private string _metaverseId;
 
         public Wardrobe(IFetchWearables connection, string metaverseId)
         {
-            Wearables = new List<WearableBase>();
+            Wearables = new List<IWearable>();
             _connection = connection;
             _metaverseId = metaverseId;
         }

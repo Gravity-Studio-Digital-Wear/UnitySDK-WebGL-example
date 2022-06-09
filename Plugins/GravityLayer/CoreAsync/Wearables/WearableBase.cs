@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace GravityLayer.Wearables
 {
-    public class WearableBase
+    public class WearableBase : IWearable
     {
         public string Title { get; private set; }
         public Texture2D PreviewImage { get; private set; }
