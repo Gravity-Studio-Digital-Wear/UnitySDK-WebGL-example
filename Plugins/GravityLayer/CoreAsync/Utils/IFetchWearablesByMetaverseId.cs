@@ -2,7 +2,7 @@
 
 namespace GravityLayer.Utils
 {
-    public interface IFetchWearables
+    public interface IFetchWearablesByMetaverseId
     {
         public Task<string> FetchWearablesByMetaverseId(string metaverseId);
     }
