@@ -38,7 +38,7 @@ namespace GravityLayer.Wearables
                 if ((r.product.metadata != null) & (r.product.metadata.Length > 0))
                 {
                     texture = await Downloader.DownloadImage(r.product.metadata[0].previewImage);
-                    Wearables.Add(new WearableBase(r.product.name, (Texture2D)texture, r.product.metadata[0].modelUrl, _metaverseId));
+                    Wearables.Add(new WearableBase(r.product.name, (Texture2D)texture, r.product.metadata[0].modelUrl));
                 }
             }
         }
