@@ -44,7 +44,7 @@ public class CustomizedInventory : MonoBehaviour
 
         ItemWearable itemWearable;
 
-        await _gtsManager.Wardrobe.FetchWearables();
+        await _gtsManager.Wardrobe.FetchInteroperableWearables();
 
         foreach (WearableBase w in _gtsManager.Wardrobe.Wearables)
         {
