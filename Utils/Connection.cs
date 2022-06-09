@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GravityLayer.Utils
 {
-    public class Connection : IFetchWearables
+    public class Connection : IFetchWearablesByMetaverseId
     {
         public bool ConnectionEstablished { get; private set; }
 
