@@ -6,11 +6,6 @@ using System.Threading.Tasks;
 
 namespace GravityLayer.Utils
 {
-    public interface IFetchWearables
-    {
-        public Task<string> FetchWearablesByMetaverseId(string metaverseId);
-    }
-
     public class Connection : IFetchWearables
     {
         public bool ConnectionEstablished { get; private set; }
