@@ -9,11 +9,13 @@ namespace GravityLayer
     {
         public MetaverseAPIWrapper GLMetaverseAPIWrapper { get; private set; }
         public WardrobeByUser Wardrobe { get; private set; }
+        public Stock Stock { get; private set; }
 
         public MetaverseEntryPoint(string apiUrl, string secret)
         {
             GLMetaverseAPIWrapper = new MetaverseAPIWrapper(apiUrl, secret);
             Wardrobe = new WardrobeByUser(GLMetaverseAPIWrapper);
+            Stock = new Stock(GLMetaverseAPIWrapper);
         }
     }
 }
