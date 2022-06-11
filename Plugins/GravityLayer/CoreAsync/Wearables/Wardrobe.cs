@@ -4,6 +4,7 @@ using UnityEngine;
 using GravityLayer.Utils;
 using System.IO;
 using System.Threading.Tasks;
+using GravityLayer.Utils.APIResponse.UserResponse;
 
 namespace GravityLayer.Wearables
 {

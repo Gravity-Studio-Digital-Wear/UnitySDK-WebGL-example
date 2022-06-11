@@ -1,7 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace GravityLayer.Utils
+namespace GravityLayer.Utils.APIResponse.UserResponse
 {
+    [Serializable]
     public struct LoginResponse
     {
         public string address;

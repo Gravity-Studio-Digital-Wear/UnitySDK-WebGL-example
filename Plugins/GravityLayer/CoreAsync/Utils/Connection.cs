@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections;
 using UnityEngine;
-using UnityEngine.Networking;
 using System.Threading.Tasks;
+using GravityLayer.Utils.APIResponse.UserResponse;
 
 namespace GravityLayer.Utils
 {
