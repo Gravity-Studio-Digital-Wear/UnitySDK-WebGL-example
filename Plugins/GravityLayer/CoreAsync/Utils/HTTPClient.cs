@@ -22,7 +22,7 @@ namespace GravityLayer.Utils
 
                 if (secret.Length > 0)
                 {
-                    request.SetRequestHeader("api-secret", secret);
+                    request.SetRequestHeader("api-key", secret);
                 }
 
                 var operation = request.SendWebRequest();

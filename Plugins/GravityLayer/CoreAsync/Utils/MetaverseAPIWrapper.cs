@@ -25,7 +25,7 @@ namespace GravityLayer.Utils
 
         public async Task<string> GetNFTsByAddress(string address)
         {
-            string url = _apiUrl + "nfts/getByAddress?address=" + address;
+            string url = _apiUrl + "/nfts/getByAddress?address=" + address;
 
             var result = await HTTPClient.Get(url, secret: _secret);
 
@@ -35,7 +35,7 @@ namespace GravityLayer.Utils
         /// <param name="filter">for filtering results. Example "param_OutfitGender=0&param_platform=pc"</param>
         public async Task<string> GetModelMetadataByNft(string contractId, string tokenId, string filter = "")
         {
-            string url = _apiUrl + "nfts/getModelByNft?contractId=" + contractId + "&tokenTypeId=" + tokenId;
+            string url = _apiUrl + "/nfts/getModelByNft?contractId=" + contractId + "&tokenTypeId=" + tokenId;
 
             if (filter.Length > 0)
             {
