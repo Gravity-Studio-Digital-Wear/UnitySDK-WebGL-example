@@ -2,10 +2,11 @@
 using UnityEngine;
 using System.Threading.Tasks;
 using GravityLayer.Utils;
+using GravityLayer.Utils.APIResponse.MetaverseResponse;
 
 namespace GravityLayer.Wearables
 {
-    class WardrobeByUser : IWardrobe
+    public class WardrobeByUser : IWardrobe
     {
         public List<IWearable> Wearables { get; private set; }
 
@@ -27,13 +28,13 @@ namespace GravityLayer.Wearables
         {
             Texture texture;
             Wearables.Clear();
-            var jsonData = JsonUtility.FromJson<WardrobeResult>("{\"result\":" + jsonString + "}");
-            foreach (var r in jsonData.result)
+            var jsonData = JsonUtility.FromJson<WardrobeResult>("{\"products\":" + jsonString + "}");
+            foreach (var p in jsonData.products)
             {
-                if ((r.product.metadata != null) & (r.product.metadata.Length > 0))
+                if ((p.metadata != null) & (p.metadata.Length > 0))
                 {
-                    texture = await Downloader.DownloadImage(r.product.metadata[0].previewImage);
-                    Wearables.Add(new WearableBase(r.product.name, (Texture2D)texture, r.product.metadata[0].modelUrl));
+                    texture = await Downloader.DownloadImage(p.metadata[0].previewImage);
+                    Wearables.Add(new WearableBase(p.name, (Texture2D)texture, p.metadata[0].modelUrl));
                 }
             }
         }
