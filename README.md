@@ -40,7 +40,7 @@ To make a build
 ## Run locally
 
 In order a demo to work properly you need to run a proxy server for Gravity API. We already set it up (you will need [Node.js](https://nodejs.org/en/) and [npm](https://www.npmjs.com/) to be installed). To install the proxy server:
-1. Clone it from [here](https://github.com/stfy/webgl-serve).
+1. Clone it from [here](https://github.com/Gravity-Studio-Digital-Wear/webgl-serve).
 2. Open its folder and type:
   1. `npm i`
   2. `npm run serve`
